@@ -56,7 +56,6 @@ You are free to add any dependencies you'd like, but please document why you cho
   - Headings, bold, italic, underline
   - Lists, horizontal rules
   - Inline code / blocks
-- Match the visual style shown in the design (clean, readable)
 
 ### 2. Function badges
 
