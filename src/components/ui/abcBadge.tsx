@@ -47,7 +47,7 @@ const AbcComponentPlaceholderBadge = ({ id }: { id: string }) => {
             <DropdownMenuSeparator className="DropdownMenuSeparator" />
             <DropdownMenuItem className="DropdownMenuItem">
               There is a description for a Delete function but what do you want
-              me to delete? A line, a Ask, a Say or everything else?
+              me to delete? A line, a Ask, or Say?
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenuPortal>

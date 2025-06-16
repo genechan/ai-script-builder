@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import React from "react";
 import AbcComponentPlaceholderBadge from "@/components/ui/abcBadge";
 import XyzComponentPlaceholderBadge from "@/components/ui/xyzBadge";
@@ -87,6 +88,7 @@ export function Editor() {
         >
           <ReactMarkdown
             children={processedMarkdown}
+            remarkPlugins={[remarkGfm]}
             components={{
               code: ({ node, ...props }) => {
                 // Check if this is one of our custom function code blocks
@@ -121,8 +123,15 @@ export function Editor() {
                 // Render all other divs normally
                 return <div {...props} />;
               },
-              // You can add more custom renderers here for other HTML elements if needed
-              // e.g., p: ({node, ...props}) => <p style={{color: 'purple'}} {...props} />
+              ol: ({ node, ...props }) => {
+                return (
+                  <ol
+                    className="p-4"
+                    style={{ listStyle: "decimal" }}
+                    {...props}
+                  />
+                );
+              },
             }}
           />
         </div>
