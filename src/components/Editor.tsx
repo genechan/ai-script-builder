@@ -1,7 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import ReactMarkdown from "react-markdown";
-import React from "react"; // Import React for JSX
-
+import React from "react";
+import AbcComponentPlaceholderBadge from "@/components/ui/abcBadge";
+import XyzComponentPlaceholderBadge from "@/components/ui/xyzBadge";
 const SAMPLE_SCRIPT = `# ExampleCo Home Solutions – Sample Call Script
 
 You're a customer service representative speaking on the phone.
@@ -57,46 +58,14 @@ You're a customer service representative speaking on the phone.
 End with:  
 <% function xyz98765-wxyz-4321-lmno-pqrstuvwxyza %>`;
 
-// Define placeholder components for your custom functions
-const AbcComponentPlaceholder = ({ id }: { id: string }) => (
-  <div
-    style={{
-      border: "2px dashed #4CAF50",
-      padding: "10px",
-      margin: "10px 0",
-      backgroundColor: "#e8f5e9",
-    }}
-  >
-    <strong>Custom Component Placeholder:</strong> Function ID <code>{id}</code>{" "}
-    (abc)
-  </div>
-);
-
-const XyzComponentPlaceholder = ({ id }: { id: string }) => (
-  <div
-    style={{
-      border: "2px dashed #FF9800",
-      padding: "10px",
-      margin: "10px 0",
-      backgroundColor: "#fff3e0",
-    }}
-  >
-    <strong>Custom Component Placeholder:</strong> Function ID <code>{id}</code>{" "}
-    (xyz)
-  </div>
-);
-
 const componentRegistry: {
   [key: string]: React.ComponentType<{ id: string }>;
 } = {
-  "abc12345-def6-7890-ghij-klmnopqrstuv": AbcComponentPlaceholder,
-  "xyz98765-wxyz-4321-lmno-pqrstuvwxyza": XyzComponentPlaceholder,
+  "abc12345-def6-7890-ghij-klmnopqrstuv": AbcComponentPlaceholderBadge,
+  "xyz98765-wxyz-4321-lmno-pqrstuvwxyza": XyzComponentPlaceholderBadge,
 };
 
 // Pre-process the Markdown to replace custom tags with identifiable HTML elements
-// We use a unique key to help React with rendering lists of these items if they were dynamic,
-// though for this static replacement, it's less critical but good practice.
-let uniqueKeyCounter = 0;
 const processedMarkdown = SAMPLE_SCRIPT.replace(
   /<% function (.*?) %>/g,
   (_match, functionId) => {
@@ -114,6 +83,7 @@ export function Editor() {
           // Apply styling to this wrapper div
           className="min-h-[400px] w-full outline-none prose prose-sm max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-strong:text-gray-900 prose-strong:font-semibold prose-em:text-gray-700 prose-em:italic prose-ul:list-disc prose-ul:pl-4 prose-ol:list-decimal prose-ol:pl-4 prose-li:text-gray-700 prose-hr:border-gray-200"
           aria-label="Rendered script content" // Updated aria-label
+          contentEditable
         >
           <ReactMarkdown
             children={processedMarkdown}
@@ -122,7 +92,6 @@ export function Editor() {
                 // Check if this is one of our custom function code blocks
                 const className = props.className || "";
                 let componentId: string | undefined;
-
                 if (className.includes("language-custom-function-")) {
                   componentId = className.replace(
                     "language-custom-function-",
