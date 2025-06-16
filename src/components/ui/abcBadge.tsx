@@ -13,7 +13,11 @@ const AbcComponentPlaceholderBadge = ({ id }: { id: string }) => {
     abcComponentData.description || "No description available";
 
   return (
-    <div className="relative group inline-block" contentEditable="false">
+    <div
+      className={`custom-function-wrapper relative group inline-block`}
+      data-function-id={id}
+      contentEditable="false"
+    >
       {/* Tooltip that shows on hover */}
       <div
         className="absolute left-0 top-full mt-2 w-auto max-w-xs p-2 bg-gray-800 text-white text-xs rounded-md shadow-lg 
