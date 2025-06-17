@@ -1,3 +1,7 @@
+## Video overview of the take home
+
+https://www.loom.com/share/2f4b7d842aa74df3b8c7936b579e0b63?sid=31ac8f2a-8bed-48f8-b47b-304213232224
+
 ## Library used:
 
 - react-markdown
