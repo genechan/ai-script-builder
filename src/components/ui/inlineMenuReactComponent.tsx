@@ -1,6 +1,6 @@
 import { AbcComponentPlaceholderBadgeLabel } from "@/components/ui/abcBadge";
 import { XyzComponentPlaceholderBadgeLabel } from "@/components/ui/xyzBadge";
-
+import { abcComponentId, xyzComponentId } from "@/constant";
 import {
   DropdownMenu,
   DropdownMenuPortal,
@@ -53,18 +53,14 @@ const InlineMenuReactComponent = () => {
             <DropdownMenuSeparator className="DropdownMenuSeparator" />
             <DropdownMenuItem
               className="DropdownMenuItem"
-              onClick={() =>
-                setSelectedBadge("xyz98765-wxyz-4321-lmno-pqrstuvwxyza")
-              }
+              onClick={() => setSelectedBadge(xyzComponentId)}
             >
               <XyzComponentPlaceholderBadgeLabel />
             </DropdownMenuItem>
             <DropdownMenuSeparator className="DropdownMenuSeparator" />
             <DropdownMenuItem
               className="DropdownMenuItem"
-              onClick={() =>
-                setSelectedBadge("abc12345-def6-7890-ghij-klmnopqrstuv")
-              }
+              onClick={() => setSelectedBadge(abcComponentId)}
             >
               <AbcComponentPlaceholderBadgeLabel />
             </DropdownMenuItem>

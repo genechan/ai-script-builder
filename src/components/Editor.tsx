@@ -2,7 +2,7 @@ import ReactDOM from "react-dom/client"; // Import createRoot
 import { Card, CardContent } from "@/components/ui/card";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import React, { useState, useRef } from "react"; // Added useState, useRef
+import { useState, useRef } from "react"; // Added useState, useRef
 import TurndownService from "turndown"; // Added TurndownService
 import { Button } from "@/components/ui/button"; // Assuming you have a Button component
 import InlineMenuReactComponent from "@/components/ui/inlineMenuReactComponent";
@@ -180,6 +180,7 @@ export function Editor() {
                         data-custom-function-id={componentId}
                         className="custom-function-wrapper"
                         contentEditable="false" // Make this specific span non-editable
+                        suppressContentEditableWarning={true}
                       >
                         <ComponentToRender id={componentId} />
                       </span>
@@ -243,7 +244,7 @@ export function Editor() {
   );
 }
 
-const handleInput = (event: React.FormEvent<HTMLDivElement>) => {
+const handleInput = () => {
   const selection = window.getSelection();
   if (!selection || selection.rangeCount === 0) return;
 

@@ -1,3 +1,4 @@
+import { abcComponentId, xyzComponentId } from "@/constant";
 export interface FunctionSpec {
   id: string;
   description: string;
@@ -5,12 +6,12 @@ export interface FunctionSpec {
 }
 
 export const abcComponentData = {
-  id: "abc12345-def6-7890-ghij-klmnopqrstuv",
+  id: abcComponentId,
   description: "Ends the conversation with a successful outcome",
   function_internal_id: "Functions.EndConversation",
 };
 export const xyzComponentData = {
-  id: "xyz98765-wxyz-4321-lmno-pqrstuvwxyza",
+  id: xyzComponentId,
   description: "Transfers the call to a human representative",
   function_internal_id: "Functions.TransferCall",
 };
