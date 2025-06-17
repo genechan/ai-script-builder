@@ -13,9 +13,8 @@ const XyzComponentPlaceholderBadge = ({ id }: { id: string }) => {
     xyzComponentData.description || "No description available";
   return (
     <div
-      className={`custom-function-wrapper relative group inline-block`}
+      className="custom-function-wrapper relative group inline-block"
       data-function-id={id}
-      contentEditable="false"
     >
       {/* Tooltip that shows on hover */}
       <div
@@ -28,8 +27,9 @@ const XyzComponentPlaceholderBadge = ({ id }: { id: string }) => {
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset">
-            XYZ Badge
+          {/* This is the badge that will be displayed in the inline menu, it needs a wrapper span for the menu to open*/}
+          <span>
+            <XyzComponentPlaceholderBadgeLabel />
           </span>
         </DropdownMenuTrigger>
 
@@ -60,3 +60,11 @@ const XyzComponentPlaceholderBadge = ({ id }: { id: string }) => {
 };
 
 export default XyzComponentPlaceholderBadge;
+
+export const XyzComponentPlaceholderBadgeLabel = () => {
+  return (
+    <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-green-700/10 ring-inset hover:bg-green-100 transition-colors">
+      XYZ Badge
+    </span>
+  );
+};

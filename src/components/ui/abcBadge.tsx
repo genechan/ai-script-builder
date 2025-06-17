@@ -14,9 +14,8 @@ const AbcComponentPlaceholderBadge = ({ id }: { id: string }) => {
 
   return (
     <div
-      className={`custom-function-wrapper relative group inline-block`}
+      className="custom-function-wrapper relative group inline-block"
       data-function-id={id}
-      contentEditable="false"
     >
       {/* Tooltip that shows on hover */}
       <div
@@ -29,8 +28,9 @@ const AbcComponentPlaceholderBadge = ({ id }: { id: string }) => {
       </div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <span className="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-pink-700/10 ring-inset hover:bg-pink-100 transition-colors">
-            ABC badge
+          {/* This is the badge that will be displayed in the inline menu, it needs a wrapper span for the menu to open*/}
+          <span>
+            <AbcComponentPlaceholderBadgeLabel />
           </span>
         </DropdownMenuTrigger>
 
@@ -61,3 +61,11 @@ const AbcComponentPlaceholderBadge = ({ id }: { id: string }) => {
 };
 
 export default AbcComponentPlaceholderBadge;
+
+export const AbcComponentPlaceholderBadgeLabel = () => {
+  return (
+    <span className="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-pink-700/10 ring-inset hover:bg-pink-100 transition-colors">
+      ABC badge
+    </span>
+  );
+};
