@@ -30,7 +30,7 @@ const AbcComponentPlaceholderBadge = ({ id }: { id: string }) => {
         <DropdownMenuTrigger asChild>
           {/* This is the badge that will be displayed in the inline menu, it needs a wrapper span for the menu to open*/}
           <span>
-            <AbcComponentPlaceholderBadgeLabel />
+            <AbcComponentPlaceholderBadgeLabel descriptionAlwaysOn={false} />
           </span>
         </DropdownMenuTrigger>
 
@@ -62,10 +62,19 @@ const AbcComponentPlaceholderBadge = ({ id }: { id: string }) => {
 
 export default AbcComponentPlaceholderBadge;
 
-export const AbcComponentPlaceholderBadgeLabel = () => {
+export const AbcComponentPlaceholderBadgeLabel = ({
+  descriptionAlwaysOn = true,
+}: {
+  descriptionAlwaysOn?: boolean;
+}) => {
+  const description =
+    abcComponentData.description || "No description available";
   return (
-    <span className="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-pink-700/10 ring-inset hover:bg-pink-100 transition-colors">
-      ABC badge
+    <span>
+      <span className="inline-flex items-center rounded-md bg-pink-50 px-2 py-1 text-xs font-medium text-pink-700 ring-1 ring-pink-700/10 ring-inset hover:bg-pink-100 transition-colors">
+        ABC badge
+      </span>
+      {descriptionAlwaysOn && <span className="p-1">{description}</span>}
     </span>
   );
 };

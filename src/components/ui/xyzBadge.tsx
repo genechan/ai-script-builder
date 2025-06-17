@@ -29,7 +29,7 @@ const XyzComponentPlaceholderBadge = ({ id }: { id: string }) => {
         <DropdownMenuTrigger asChild>
           {/* This is the badge that will be displayed in the inline menu, it needs a wrapper span for the menu to open*/}
           <span>
-            <XyzComponentPlaceholderBadgeLabel />
+            <XyzComponentPlaceholderBadgeLabel descriptionAlwaysOn={false} />
           </span>
         </DropdownMenuTrigger>
 
@@ -61,10 +61,19 @@ const XyzComponentPlaceholderBadge = ({ id }: { id: string }) => {
 
 export default XyzComponentPlaceholderBadge;
 
-export const XyzComponentPlaceholderBadgeLabel = () => {
+export const XyzComponentPlaceholderBadgeLabel = ({
+  descriptionAlwaysOn = true,
+}: {
+  descriptionAlwaysOn?: boolean;
+}) => {
+  const description =
+    xyzComponentData.description || "No description available";
   return (
-    <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-green-700/10 ring-inset hover:bg-green-100 transition-colors">
-      XYZ Badge
+    <span>
+      <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-green-700/10 ring-inset hover:bg-green-100 transition-colors">
+        XYZ Badge
+      </span>
+      {descriptionAlwaysOn && <span className="p-1">{description}</span>}
     </span>
   );
 };
