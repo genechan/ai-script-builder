@@ -64,16 +64,16 @@ End with:
 <% function xyz98765-wxyz-4321-lmno-pqrstuvwxyza %>`;
 
 // Pre-process the Markdown to replace custom tags with identifiable HTML elements
-const processedMarkdown = SAMPLE_SCRIPT.replace(
-  /<% function (.*?) %>/g,
-  (_match, functionId) => {
+function preProcessMarkdownToHtml(markdown: string) {
+  // This function is used to pre-process the markdown before rendering
+  // It replaces custom function tags with identifiable HTML elements
+  return markdown.replace(/<% function (.*?) %>/g, (_match, functionId) => {
     // Use Markdown syntax that ReactMarkdown can properly handle
     // We'll create a custom code block with a special language identifier
     // Adding newlines before and after to ensure it's treated as a block
     return `\n\`\`\`custom-function-${functionId} \n\`\`\`\n`;
-  }
-);
-
+  });
+}
 export function Editor() {
   const [savedMarkdown, setSavedMarkdown] = useState("");
   const contentEditableRef = useRef<HTMLDivElement>(null);
@@ -140,7 +140,9 @@ export function Editor() {
       setSavedMarkdown(newMarkdown);
     }
   };
-
+  const markupToUse = savedMarkdown
+    ? preProcessMarkdownToHtml(savedMarkdown)
+    : preProcessMarkdownToHtml(SAMPLE_SCRIPT); // Use savedMarkdown if available, otherwise use processedMarkdown from first run.
   return (
     <Card className="rounded-lg shadow-lg">
       <CardContent className="p-6">
@@ -157,7 +159,7 @@ export function Editor() {
           suppressContentEditableWarning={true}
         >
           <ReactMarkdown
-            children={processedMarkdown}
+            children={markupToUse}
             remarkPlugins={[remarkGfm]}
             components={{
               code: ({ node, ...props }) => {
